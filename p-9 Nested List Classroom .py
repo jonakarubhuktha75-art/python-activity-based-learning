@@ -1,9 +1,4 @@
 
-# Nested List Classroom Occupancy Analysis
-
-# None = vacant seat
-# "RESERVED" = seat reserved and unavailable for allocation
-# Student names represent occupied seats
 
 classrooms = {
     "Classroom A": [
@@ -65,7 +60,6 @@ def allocate_student(classrooms, student, room_name):
         print("Error: Student name cannot be empty.")
         return False
 
-    # Prevent duplicate allocation across all classrooms
     duplicates = find_student_duplicates(classrooms)
 
     existing_students = {
@@ -80,7 +74,6 @@ def allocate_student(classrooms, student, room_name):
         print(f"Error: {student} is already allocated.")
         return False
 
-    # Allocate the student to the first available seat
     for row_index, row in enumerate(classrooms[room_name]):
         for seat_index, seat in enumerate(row):
             if seat is None:
