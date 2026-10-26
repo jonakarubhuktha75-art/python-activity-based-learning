@@ -1,5 +1,4 @@
 
-# Student Performance Trend Analysis
 
 WEAK_SUBJECT_THRESHOLD = 40
 
@@ -11,7 +10,6 @@ def analyze_student(name, scores):
     print(f"\nStudent: {name}")
     print("-" * 65)
 
-    # Compare scores for each subject
     for subject in subjects:
         marks = list(scores[subject].values())
         improvement = marks[-1] - marks[0]
@@ -26,7 +24,6 @@ def analyze_student(name, scores):
         print(f"{subject}: {marks} -> {trend}")
         total_scores.extend(marks)
 
-    # Identify consistently weak subjects
     weak_subjects = []
 
     for subject in subjects:
@@ -35,10 +32,8 @@ def analyze_student(name, scores):
         if all(mark < WEAK_SUBJECT_THRESHOLD for mark in marks):
             weak_subjects.append(subject)
 
-    # Calculate overall average
     average = sum(total_scores) / len(total_scores)
 
-    # Classify student using predefined criteria
     if average >= 85:
         category = "Excellent"
     elif average >= 70:
@@ -48,7 +43,6 @@ def analyze_student(name, scores):
     else:
         category = "Needs Improvement"
 
-    # Display results
     print(f"\nOverall Average: {average:.2f}%")
     print(f"Performance Category: {category}")
 
@@ -57,7 +51,6 @@ def analyze_student(name, scores):
     else:
         print("Consistently Weak Subjects: None")
 
-    # Calculate overall change between first and last exam
     first_total = sum(scores[s][exams[0]] for s in subjects)
     last_total = sum(scores[s][exams[-1]] for s in subjects)
 
