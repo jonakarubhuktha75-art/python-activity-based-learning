@@ -9,7 +9,6 @@ def classes_needed(attended, total, threshold):
     if calculate_attendance(attended, total) >= threshold:
         return 0
 
-    # Assume all future classes are attended
     needed = 0
 
     while calculate_attendance(attended + needed, total + needed) < threshold:
