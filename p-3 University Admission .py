@@ -1,7 +1,4 @@
 
-# University Admission Decision Engine
-
-# Course eligibility criteria
 COURSES = {
     "CSE": {
         "required_subjects": ["Mathematics", "Physics"],
@@ -30,7 +27,6 @@ def evaluate_candidate(candidate, course_name):
     course = COURSES[course_name]
     marks = candidate["marks"]
 
-    # Check whether all required subjects are present
     for subject in course["required_subjects"]:
         if subject not in marks:
             return False, f"Missing required subject: {subject}"
@@ -38,7 +34,6 @@ def evaluate_candidate(candidate, course_name):
         if marks[subject] < course["minimum_subject_marks"]:
             return False, f"Insufficient marks in {subject}"
 
-    # Calculate aggregate percentage across all supplied subjects
     aggregate = sum(marks.values()) / len(marks)
 
     candidate["aggregate"] = aggregate
@@ -64,11 +59,6 @@ def rank_candidates(candidates, course_name):
                 "reason": reason
             })
 
-    # Tie-breaking:
-    # 1. Higher aggregate marks
-    # 2. Higher marks in Mathematics, if available
-    # 3. Higher marks in Physics, if available
-    # 4. Alphabetical name
     eligible.sort(
         key=lambda candidate: (
             candidate["aggregate"],
@@ -79,7 +69,6 @@ def rank_candidates(candidates, course_name):
         reverse=False
     )
 
-    # Sort descending by marks; use a separate sort key
     eligible.sort(
         key=lambda candidate: (
             -candidate["aggregate"],
