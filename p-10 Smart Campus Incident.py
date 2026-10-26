@@ -1,7 +1,4 @@
 
-# Smart Campus Incident and Maintenance Prioritization
-
-# Predefined severity scores
 SEVERITY_SCORE = {
     "Low": 1,
     "Medium": 2,
@@ -9,7 +6,7 @@ SEVERITY_SCORE = {
     "Critical": 4
 }
 
-# Location importance scores
+
 LOCATION_SCORE = {
     "Classroom": 2,
     "Library": 2,
@@ -23,8 +20,7 @@ LOCATION_SCORE = {
 
 
 def calculate_priority(severity, location, frequency):
-    # Higher severity, location importance, and frequency
-    # increase the overall priority score.
+
     score = (
         SEVERITY_SCORE[severity] * 10
         + LOCATION_SCORE[location] * 5
@@ -82,7 +78,6 @@ def main():
         }
     ]
 
-    # Calculate scores and priorities
     for incident in incidents:
         score, priority = calculate_priority(
             incident["severity"],
@@ -92,7 +87,6 @@ def main():
         incident["score"] = score
         incident["priority"] = priority
 
-    # Sort by score (highest first), then severity
     incidents.sort(
         key=lambda item: (
             item["score"],
@@ -114,7 +108,6 @@ def main():
         print(f"Score       : {incident['score']}")
         print(f"Priority    : {incident['priority']}")
 
-    # Generate priority summary
     summary = {
         "URGENT": 0,
         "HIGH": 0,
