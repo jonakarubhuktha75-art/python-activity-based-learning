@@ -1,5 +1,4 @@
 
-# Multi-Day Water Tank Simulation
 
 def simulate_tank(capacity, initial_water, inflows, outflows, threshold):
     water_level = initial_water
@@ -23,11 +22,11 @@ def simulate_tank(capacity, initial_water, inflows, outflows, threshold):
     for day, (inflow, outflow) in enumerate(
         zip(inflows, outflows), start=1
     ):
-        # Calculate water before applying tank limits
+
         raw_level = water_level + inflow - outflow
         status = []
 
-        # Detect overflow
+
         if raw_level > capacity:
             overflow = raw_level - capacity
             overflow_count += 1
@@ -36,14 +35,12 @@ def simulate_tank(capacity, initial_water, inflows, outflows, threshold):
         else:
             water_level = raw_level
 
-        # Detect shortage
         if water_level < 0:
             shortage = abs(water_level)
             shortage_count += 1
             status.append(f"SHORTAGE ({shortage:.1f} L)")
             water_level = 0
 
-        # Detect the first interval at or above threshold
         if (
             first_threshold_interval is None
             and water_level >= threshold
