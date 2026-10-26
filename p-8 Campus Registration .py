@@ -2,8 +2,7 @@
 import re
 from collections import Counter
 
-# Registration format: CAMPUS-YEAR-BRANCH-NUMBER
-# Example: UNI-2025-CSE-0123
+
 
 BRANCH_CODES = {
     "CSE": "Computer Science Engineering",
