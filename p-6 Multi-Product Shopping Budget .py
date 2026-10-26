@@ -1,5 +1,4 @@
 
-# Multi-Product Shopping Budget Constraint
 
 def calculate_discount(subtotal):
     if subtotal >= 5000:
@@ -25,13 +24,10 @@ def calculate_total(basket):
 
 
 def reduce_basket(basket, budget):
-    # Work on a copy so the original basket is preserved.
     basket = [item.copy() for item in basket]
 
     reductions = []
 
-    # Reduce the least essential / lowest-priority items first.
-    # Lower priority number means the item is reduced first.
     basket.sort(key=lambda item: item["priority"])
 
     while True:
@@ -40,7 +36,6 @@ def reduce_basket(basket, budget):
         if total <= budget:
             break
 
-        # Find an item with at least one unit remaining.
         candidates = [
             item for item in basket
             if item["quantity"] > 0
@@ -49,12 +44,10 @@ def reduce_basket(basket, budget):
         if not candidates:
             break
 
-        # Reduce one unit of the lowest-priority item.
         item = candidates[0]
         item["quantity"] -= 1
         reductions.append(item["name"])
 
-    # Restore the original display order.
     basket.sort(key=lambda item: item["original_order"])
 
     return basket, reductions
