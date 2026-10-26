@@ -2,14 +2,12 @@
 from datetime import datetime
 import math
 
-# Parking rates per hour (in Rs.)
 VEHICLE_RATES = {
     "bike": 10,
     "car": 20,
     "bus": 40
 }
 
-# Maximum parking charge per 24-hour period
 DAILY_LIMITS = {
     "bike": 100,
     "car": 200,
@@ -42,14 +40,11 @@ def calculate_fee(entry, exit_time, vehicle):
     duration_minutes = (exit_time - entry).total_seconds() / 60
     total_hours = math.ceil(duration_minutes / 60)
 
-    # Charge for each 24-hour period or part of one.
     days = math.ceil(duration_minutes / (24 * 60))
 
     hourly_rate = VEHICLE_RATES[vehicle]
     daily_limit = DAILY_LIMITS[vehicle]
 
-    # Calculate hourly charge with a daily cap.
-    # Each started 24-hour period is billed separately.
     remaining_hours = total_hours
     total_fee = 0
     overnight_count = 0
@@ -60,7 +55,6 @@ def calculate_fee(entry, exit_time, vehicle):
         total_fee += daily_charge
         remaining_hours -= hours
 
-        # Apply overnight fee for each midnight crossed.
         if day < days - 1:
             overnight_count += 1
 
